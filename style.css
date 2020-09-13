@@ -1,0 +1,18 @@
+.startGame {
+    background: cornflowerblue;
+}
+
+.questions {
+    background: olive;
+    display: none;
+}
+
+.answers {
+    background: pink;
+    display: none;
+}
+
+.endGame {
+    background: orangered;
+    display: none;
+}
