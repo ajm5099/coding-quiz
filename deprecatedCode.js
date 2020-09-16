@@ -1,3 +1,7 @@
+//================================================================================
+//Script Backup 9-14
+//================================================================================
+
 function questionOne() {
     questionText.textContent = "What do you call a variable that can store multiple values?";
     answerBtnOne.textContent = "List";

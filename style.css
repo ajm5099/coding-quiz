@@ -8,18 +8,33 @@
 }
 
 .questions {
-    background: olive;
+    color: black;
     display: none;
+    text-align: center;
+    padding: 1vw;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    margin-bottom: 3vw;
+    border-color: black;
+    border: 1vw;
 }
 
 .answers {
-    background: pink;
+    background: rgb(43, 29, 231);
     display: none;
+    padding: 3vw;
+    color: black;
+    width: auto;
+    text-align: center;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    
 }
 
 .endGame {
     background: orangered;
     display: none;
+
 }
 
 .submitArea {

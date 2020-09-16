@@ -3,34 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <body>
-        <div class="startGame">
-            <h1>The motorcycle riders knowledge test</h1>
-            <h1>Ready to start the game?</h1>
-            <button id="startGameBtn">Click to start the quiz</button>
-        </div>
-        <div>
-            <h1 class="timeRemaining">Time Remaining: </h1>
-        </div>
-        <div class="questions">
-            <h1 class="questionArea">The questions go here</h1>
-        </div>
-        <div class="answers">
-            <h1>the possible answers go here</h1>
-            <button id="answerOneBtn">This is the answer one button</button>
-            <button id="answerTwoBtn">This is the answer two button</button>
-            <button id="answerThreeBtn">This is the answer three button</button>
-            <button id="answerFourBtn">This is the answer four button</button>
-        </div>
-        <div class="endGame">
-            <h1>The game is over</h1>
-            <div class="score">Your score</div>
-        </div>
+
+    <!-- This is the start game screen -->
+    <div class="startGame">
+        <h1>The motorcycle riders knowledge test</h1>
+        <h1>Ready to start the game?</h1>
+        <button id="startGameBtn">Click to start the quiz</button>
+    </div>
+
+    <!-- Shows the total time remaining -->
+    <div>
+        <h1 class="timeRemaining">Time Remaining: </h1>
+    </div>
+
+    <!-- Shows the questions -->
+    <div class="questions">
+        <h1 class="questionArea">The questions go here</h1>
+    </div>
+
+    <!-- Shows the answers -->
+    <div class="answers">
+        <h1>Select an answer</h1> 
+        <!-- I want the answers text to be further away from the buttons -->
+        <button type="button" class="btn btn-outline-primary" id="answerOneBtn">This is the answer one button</button>
+        <button type="button" class="btn btn-outline-primary" id="answerTwoBtn">This is the answer two button</button>
+        <button type="button" class="btn btn-outline-primary" id="answerThreeBtn">This is the answer three button</button>
+        <button type="button" class="btn btn-outline-primary" id="answerFourBtn">This is the answer four button</button>
+    </div>
+
+    <!-- Shows the end of the game screen and the high scores area -->
+    <div class="endGame">
+        <h1>The game is over</h1>
+        <div class="score">Your score</div>
+    </div> 
             
 <script src="script.js"></script>
 </body>
 </html>
+

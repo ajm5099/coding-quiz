@@ -3,13 +3,16 @@
 //===========================================================================
 
 //global variables
+var questionsRemaining = 5;
+var answerChecker = "";
+var correctAnswer= "";
+var quizScore = 0;
+var secondsLeft = 60;
 var questionText = document.querySelector(".questionArea");
 var answerBtnOne = document.querySelector("#answerOneBtn");
 var answerBtnTwo = document.querySelector("#answerTwoBtn");
 var answerBtnThree = document.querySelector("#answerThreeBtn");
 var answerBtnFour = document.querySelector("#answerFourBtn");
-var secondsLeft = 200;
-var quizScore = 0;
 
 
 //This part handles hiding and showing all parts of the quiz
@@ -22,6 +25,10 @@ var gameOver = document.querySelector(".endGame"); //game over page
 var userScore = document.querySelector(".score"); //user score
 
 
+//================================================================================
+// Starting the quiz
+//================================================================================
+
 //On clicking start game, time remaining, question block, answer buttons, and submit button become visible
 document.querySelector("#startGameBtn").addEventListener("click",function() {
     startGameBlock.style.display = "none";
@@ -29,77 +36,141 @@ document.querySelector("#startGameBtn").addEventListener("click",function() {
     answersBlock.style.display = "block";
     timeRemaining.style.display = "block";
     quizTimer();
-    questionOne();
+    questionSelector();
 })
 
-//TODO: Create a timer that begins to countdown as soon as the start button is clicked
-
+//a timer that begins to countdown as soon as the start button is clicked
 
 function quizTimer() {
     var timerInterval = setInterval(function() {
       secondsLeft--;
       timeRemaining.textContent = "You have " + secondsLeft + " seconds remaining";
   
-      if(secondsLeft <= 0) {
+      function endTheGame() {
         clearInterval(timerInterval);
         questionBlock.style.display = "none";
         answersBlock.style.display = "none";
         timeRemaining.style.display = "none";
         gameOver.style.display = "block";
         userScore.style.display = "block";
-        //TODO: get quiz score to work correctly
         userScore.textContent = "Your score was " + quizScore;
+        highScore();
       }
-  
+      if(secondsLeft <= 0) {
+        endTheGame()
+      }
     }, 1000);
   }
 
+//================================================================================
+// Feeding questions to the quiz
+//================================================================================
 
-//TODO: Create the answer block where possible answers will be displayed
+//TODO: Create a loop that will select the next question
 
-//TODO: Within the answer block, create 4 buttons that the user can click on
-
-
-
-//TODO: A correct answer function
-
-function correctAnswer() {
-  answerChecker = 0;
-  quizScore = quizScore + 20;
+var questionNum = 0;
+function questionSelector() {
+    questionText.textContent = myQuestions[questionNum].question;
+    answerBtnOne.textContent = myQuestions[questionNum].answer1;
+    answerBtnTwo.textContent = myQuestions[questionNum].answer2;
+    answerBtnThree.textContent = myQuestions[questionNum].answer3;
+    answerBtnFour.textContent = myQuestions[questionNum].answer4;
 }
 
-//TODO: An incorrect answer function
+//================================================================================
+// Listeners for what button is pushed
+//================================================================================
 
-function wrongAnswer() {
-  answerChecker = 1;
-  secondsLeft = secondsLeft - 10;
+//these listeners assigning the value of the button text to a new variable that we can check against the correct answer
+
+var buttonOneText
+var buttonTwoText
+var buttonThreeText
+var buttonFourText
+
+answersBlock.addEventListener("click", function(event) {
+  if(event.target.matches("button")){
+    var userAnswer = (event.target.innerHTML)
+    var correctAnswer = myQuestions[questionNum].correctAnswer;
+    questionNum++;
+    console.log(userAnswer);
+    //checking for the correct answer, and awarding points for correct answer, or deducting time for an incorrect answer
+    if(userAnswer === correctAnswer) {
+      quizScore = quizScore + 20;
+    } else {
+      secondsLeft = secondsLeft - 10;
+    }
+    if(questionNum == 6) {
+      endTheGame();
+    }
+    console.log(quizScore);
+    questionSelector();
+  };
+})
+
+
+//================================================================================
+// Saving the score at the end of the game
+//================================================================================
+
+//storing the users score
+function highScore() {
+  localStorage.setItem(quizScore);
 }
 
-function resetListen() {
-  answerBtnOne.removeEventListener("click");
-  answerBtnTwo.removeEventListener("click");
-  answerBtnThree.removeEventListener("click");
-  answerBtnFour.removeEventListener("click");
-}
 
-//TODO: Create 5 questions for the user to answer, that include 4 possible answers per question
+//================================================================================
+// Questions are stored Here
+//================================================================================
 
- 
+const myQuestions = [
+  {
+    //Question One
+    question:"What is the technique called that involves pushing on the handlebar that is opposite to the direction of your turn",
+    answer1: "Lean steer",
+    answer2: "Counter steer",
+    answer3: "Reverse steer",
+    answer4: "opposite steer",
+    correctAnswer: "Counter steer"
+  },
 
+  {
+    //Question two
+    question:"What helps you absorb a shock when riding over an obsticle in the road?",
+      answer1: "pulling in the clutch", 
+      answer2: "braking before the obsticle", 
+      answer3: "increasing throttle", 
+      answer4: "rising off of the seat", 
+    correctAnswer: "rising off of the seat"
+  },
 
+  {
+    //Question three
+    question:"When riding down the street, how much room in a lane do you need to ride safely?",
+      answer1: "A full lane", 
+      answer2: "Half of a lane", 
+      answer3: "One third of a lane", 
+      answer4: "One quarter of a lane", 
+    correctAnswer: "A full lane"
+  },
 
-// var quizQuestions = [1, 2, 3, 4, 5];
-// function questionPicker () {
+  {
+    //Question four
+    question:"When passing a line of parked cars on your motorcycle, what are potential hazards to be aware of?",
+      answer1: "A car may pull out unexpectadly", 
+      answer2: "A car door may open into your path", 
+      answer3: "A person may step out between cars", 
+      answer4: "All of these are potential hazards", 
+    correctAnswer: "All of these are potential hazards"
+  },
 
-// }
-
-// document.querySelector("#startGameBtn").addEventListener("click",function()
-// for (let index = quizQuestions.length -1; index >0; index--) {
-    
-// }
-
-//TODO: Create end game of when time reaches zero
-
-//TODO: Create endgame of when user answers all questions
-
-//TODO: Create the high score area where users can enter their name and their score will be logged. Score should be a multiple of their remaining time left
+  {
+    //Question five
+    question:"When riding in a group, new riders should be positioned where in the group?",
+      answer1: "At the back of the group", 
+      answer2: "Behind the leader", 
+      answer3: "Directly in front of the last rider", 
+      answer4: "At the front of the group", 
+    correctAnswer: "Behind the leader"
+  }
+];
