@@ -7,12 +7,13 @@ var questionsRemaining = 5;
 var answerChecker = "";
 var correctAnswer= "";
 var quizScore = 0;
-var secondsLeft = 60;
+var secondsLeft = 30;
 var questionText = document.querySelector(".questionArea");
 var answerBtnOne = document.querySelector("#answerOneBtn");
 var answerBtnTwo = document.querySelector("#answerTwoBtn");
 var answerBtnThree = document.querySelector("#answerThreeBtn");
 var answerBtnFour = document.querySelector("#answerFourBtn");
+var highScoreList = document.querySelector("#high-score-list");
 
 
 //This part handles hiding and showing all parts of the quiz
@@ -23,6 +24,7 @@ var submitBtn = document.querySelector(".submitArea"); //submit button
 var timeRemaining = document.querySelector(".timeRemaining"); //time remaining
 var gameOver = document.querySelector(".endGame"); //game over page
 var userScore = document.querySelector(".score"); //user score
+var userName = document.querySelector("#userName");
 
 
 //================================================================================
@@ -45,21 +47,22 @@ function quizTimer() {
     var timerInterval = setInterval(function() {
       secondsLeft--;
       timeRemaining.textContent = "You have " + secondsLeft + " seconds remaining";
-  
-      function endTheGame() {
-        clearInterval(timerInterval);
-        questionBlock.style.display = "none";
-        answersBlock.style.display = "none";
-        timeRemaining.style.display = "none";
-        gameOver.style.display = "block";
-        userScore.style.display = "block";
-        userScore.textContent = "Your score was " + quizScore;
-        highScore();
-      }
       if(secondsLeft <= 0) {
-        endTheGame()
+        endTheGame(timerInterval)
       }
     }, 1000);
+  }
+
+  //end the game
+  function endTheGame(endTime) {
+    clearInterval(endTime);
+    questionBlock.style.display = "none";
+    answersBlock.style.display = "none";
+    timeRemaining.style.display = "none";
+    gameOver.style.display = "block";
+    // userScore.style.display = "block";
+    // userName.style.display = "block";
+    // userScore.textContent = "Your score was " + quizScore;
   }
 
 //================================================================================
@@ -88,7 +91,13 @@ var buttonTwoText
 var buttonThreeText
 var buttonFourText
 
+//TODO: Get the last question to add to the score
 answersBlock.addEventListener("click", function(event) {
+  console.log(questionNum, "This is question num")
+  if(questionNum == 4) {
+    endTheGame(0);
+    return;
+  }
   if(event.target.matches("button")){
     var userAnswer = (event.target.innerHTML)
     var correctAnswer = myQuestions[questionNum].correctAnswer;
@@ -100,9 +109,7 @@ answersBlock.addEventListener("click", function(event) {
     } else {
       secondsLeft = secondsLeft - 10;
     }
-    if(questionNum == 6) {
-      endTheGame();
-    }
+
     console.log(quizScore);
     questionSelector();
   };
@@ -112,11 +119,27 @@ answersBlock.addEventListener("click", function(event) {
 //================================================================================
 // Saving the score at the end of the game
 //================================================================================
+//TODO:rendering the high score list
+var listNum = 1;
+function renderHighScore() {
+  for (let i = 0; i < listNum.length; i++) {
+    
+    var li = document.createElement("li");
+    li.setAttribute("data-index", i);
+    li.textContent = quizScore;
+    highScoreList.appendChild(li);
+  }
+}
 
 //storing the users score
-function highScore() {
-  localStorage.setItem(quizScore);
-}
+var highScoreButton = document.querySelector("#highScoreButton")
+highScoreButton.addEventListener("click", function(event) {
+  localStorage.setItem("Quiz score", quizScore);
+  localStorage.setItem("user name", userName.value);
+  renderHighScore();
+  })
+
+
 
 
 //================================================================================
@@ -126,7 +149,7 @@ function highScore() {
 const myQuestions = [
   {
     //Question One
-    question:"What is the technique called that involves pushing on the handlebar that is opposite to the direction of your turn",
+    question:"What is the technique called that involves pushing on the handlebar that is opposite to the direction of your turn?",
     answer1: "Lean steer",
     answer2: "Counter steer",
     answer3: "Reverse steer",

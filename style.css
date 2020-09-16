@@ -1,26 +1,42 @@
 .startGame {
     background: cornflowerblue;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    margin-bottom: 1vw;
+    border-radius: 10px;
+    text-align: center;
+    padding: .5vw;
+}
+
+img {
+    max-width: 50%;
+    height: auto;
 }
 
 .timeRemaining {
     background: yellow;
     display: none;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    margin-bottom: 1vw;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .questions {
     color: black;
+    background: rgb(248, 248, 215);
     display: none;
     text-align: center;
     padding: 1vw;
     margin-left: 25vw;
     margin-right: 25vw;
-    margin-bottom: 3vw;
-    border-color: black;
-    border: 1vw;
+    margin-bottom: 1vw;
+    border-radius: 10px;
 }
 
 .answers {
-    background: rgb(43, 29, 231);
+    background: rgb(195, 192, 245);
     display: none;
     padding: 3vw;
     color: black;
@@ -28,19 +44,37 @@
     text-align: center;
     margin-left: 25vw;
     margin-right: 25vw;
-    
+    border-radius: 10px;
+}
+
+.answer-buttons {
+    padding: .5vw;
 }
 
 .endGame {
     background: orangered;
     display: none;
+    padding: 3vw;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
 
 }
+
+/* #userName {
+    display: none;
+} */
 
 .submitArea {
     display: none;
 }
 
-.score {
+/* .score {
     display: none;
+} */
+
+.p2 {
+    font-size: 18px;
 }

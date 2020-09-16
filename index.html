@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -12,8 +12,9 @@
     <!-- This is the start game screen -->
     <div class="startGame">
         <h1>The motorcycle riders knowledge test</h1>
+        <img src="https://cdn.motor1.com/images/mgl/vy2MQ/s3/2016-aprilia-tuono-v4-1100-factory-ride-review.jpg" alt="Motorcycle rider">
         <h1>Ready to start the game?</h1>
-        <button id="startGameBtn">Click to start the quiz</button>
+        <button id="startGameBtn" class="btn btn-outline-primary">Click to start the quiz</button>
     </div>
 
     <!-- Shows the total time remaining -->
@@ -30,16 +31,36 @@
     <div class="answers">
         <h1>Select an answer</h1> 
         <!-- I want the answers text to be further away from the buttons -->
-        <button type="button" class="btn btn-outline-primary" id="answerOneBtn">This is the answer one button</button>
-        <button type="button" class="btn btn-outline-primary" id="answerTwoBtn">This is the answer two button</button>
-        <button type="button" class="btn btn-outline-primary" id="answerThreeBtn">This is the answer three button</button>
-        <button type="button" class="btn btn-outline-primary" id="answerFourBtn">This is the answer four button</button>
+        <div class="answer-buttons">
+            <button type="button" class="btn btn-outline-primary" id="answerOneBtn">This is the answer one button</button>
+        </div>
+        <div class="answer-buttons">
+            <button type="button" class="btn btn-outline-primary" id="answerTwoBtn">This is the answer two button</button>
+        </div>
+        <div class="answer-buttons">
+            <button type="button" class="btn btn-outline-primary" id="answerThreeBtn">This is the answer three button</button>
+        </div>
+        <div class="answer-buttons">
+            <button type="button" class="btn btn-outline-primary" id="answerFourBtn">This is the answer four button</button>
+        </div>
     </div>
 
     <!-- Shows the end of the game screen and the high scores area -->
     <div class="endGame">
         <h1>The game is over</h1>
-        <div class="score">Your score</div>
+        <div class="score">
+            <p2>Enter your name to save your high score</p2>
+            <form>
+                <div>
+                    <label for="userName"> Your name</label>
+                    <input type="text" id="userName" name="userName">
+                    <div>
+                        <button type="button" class="btn btn-outline-primary" id="highScoreButton">Save score</button>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
     </div> 
             
 <script src="script.js"></script>
