@@ -1,11 +1,12 @@
 .startGame {
-    background: cornflowerblue;
+    background: rgb(57, 56, 70);
     margin-left: 25vw;
     margin-right: 25vw;
     margin-bottom: 1vw;
     border-radius: 10px;
     text-align: center;
     padding: .5vw;
+    color: white;
 }
 
 img {
@@ -25,7 +26,7 @@ img {
 
 .questions {
     color: black;
-    background: rgb(248, 248, 215);
+    background: rgb(250, 178, 112);
     display: none;
     text-align: center;
     padding: 1vw;
@@ -36,10 +37,10 @@ img {
 }
 
 .answers {
-    background: rgb(195, 192, 245);
+    background: rgb(57, 56, 70);
     display: none;
     padding: 3vw;
-    color: black;
+    color: white;
     width: auto;
     text-align: center;
     margin-left: 25vw;
@@ -77,4 +78,10 @@ img {
 
 .p2 {
     font-size: 18px;
+}
+
+.high-score-list {
+    display: none;
+    text-align: center;
+    margin: 1vw;
 }

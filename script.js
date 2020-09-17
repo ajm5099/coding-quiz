@@ -4,10 +4,11 @@
 
 //global variables
 var questionsRemaining = 5;
-var answerChecker = "";
 var correctAnswer= "";
 var quizScore = 0;
 var secondsLeft = 30;
+var questionNum = 0;
+var listNum = 1;
 var questionText = document.querySelector(".questionArea");
 var answerBtnOne = document.querySelector("#answerOneBtn");
 var answerBtnTwo = document.querySelector("#answerTwoBtn");
@@ -60,18 +61,14 @@ function quizTimer() {
     answersBlock.style.display = "none";
     timeRemaining.style.display = "none";
     gameOver.style.display = "block";
-    // userScore.style.display = "block";
-    // userName.style.display = "block";
-    // userScore.textContent = "Your score was " + quizScore;
   }
 
 //================================================================================
 // Feeding questions to the quiz
 //================================================================================
 
-//TODO: Create a loop that will select the next question
+//This loop will feed questions
 
-var questionNum = 0;
 function questionSelector() {
     questionText.textContent = myQuestions[questionNum].question;
     answerBtnOne.textContent = myQuestions[questionNum].answer1;
@@ -91,26 +88,23 @@ var buttonTwoText
 var buttonThreeText
 var buttonFourText
 
-//TODO: Get the last question to add to the score
 answersBlock.addEventListener("click", function(event) {
-  console.log(questionNum, "This is question num")
-  if(questionNum == 4) {
-    endTheGame(0);
-    return;
-  }
+
   if(event.target.matches("button")){
     var userAnswer = (event.target.innerHTML)
     var correctAnswer = myQuestions[questionNum].correctAnswer;
     questionNum++;
-    console.log(userAnswer);
     //checking for the correct answer, and awarding points for correct answer, or deducting time for an incorrect answer
     if(userAnswer === correctAnswer) {
       quizScore = quizScore + 20;
+
     } else {
       secondsLeft = secondsLeft - 10;
     }
-
-    console.log(quizScore);
+    if(questionNum == 5) {
+      endTheGame(0);
+      return;
+    }
     questionSelector();
   };
 })
@@ -119,14 +113,13 @@ answersBlock.addEventListener("click", function(event) {
 //================================================================================
 // Saving the score at the end of the game
 //================================================================================
-//TODO:rendering the high score list
-var listNum = 1;
+
 function renderHighScore() {
-  for (let i = 0; i < listNum.length; i++) {
+  for (let i = 0; i < listNum; i++) {
     
     var li = document.createElement("li");
     li.setAttribute("data-index", i);
-    li.textContent = quizScore;
+    li.innerHTML = quizScore + userName.value;
     highScoreList.appendChild(li);
   }
 }
@@ -137,6 +130,7 @@ highScoreButton.addEventListener("click", function(event) {
   localStorage.setItem("Quiz score", quizScore);
   localStorage.setItem("user name", userName.value);
   renderHighScore();
+
   })
 
 
